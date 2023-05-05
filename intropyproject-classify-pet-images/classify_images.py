@@ -73,24 +73,9 @@ def classify_images(images_dir, results_dic, model):
         image_classification = list(map(lambda x: x.strip(), image_classification))
         isClassified = 0
 
-        # print(image_classification)
-
-        # print(label)
-
         if set(image_classification).intersection(label):
             isClassified = 1
         
         results_dic[key].extend([','.join(image_classification), isClassified])
 
-        # for image in image_classification:
-        #     classifierResponse = image.strip().lower()
-        #     if classifierResponse in label:
-        #         isClassified=1
-        # # print("Classifier Result : " + ','.join(image_classification) + " label : " + ','.join(label) + " isClassified : " + str(isClassified))
-        # results_dic[key].extend([','.join(image_classification), isClassified])
-
-    # for key in results_dic:
-    #     print("\nFilename=", key, "\npet_image Label=", results_dic[key][0],
-    #           "\nClassifier Label=", results_dic[key][1], "\nmatch=",
-    #           results_dic[key][2])     
     
