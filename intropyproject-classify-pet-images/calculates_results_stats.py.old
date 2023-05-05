@@ -71,66 +71,8 @@ def calculates_results_stats(results_dic):
     # Replace None with the results_stats_dic dictionary that you created with
     # this function
 
-    
-
+    z = len(results_dic)
+    A = 0
+        
     results_stats_dic = {}
-
-
-    #Initializing Count variables
-    #Number of Images
-    results_stats_dic['n_images'] = len(results_dic)
-    #Number of Correct Dog matches
-    results_stats_dic['n_correct_dogs'] = 0
-    #Number of Dog Images
-    results_stats_dic['n_dogs_img'] = 0
-    #Number of Correct Non-Dog matches
-    results_stats_dic['n_correct_notdogs'] = 0
-    #Number of Not Dog Images
-    results_stats_dic['n_notdogs_img'] = 0
-    #Number of Correct Breed matches
-    results_stats_dic['n_correct_breed'] = 0
-    #Number of Label matches
-    results_stats_dic['n_correct_label'] = 0
-
-    for key, images in results_dic.items():
-    
-        if images[2]:
-            results_stats_dic['n_correct_label'] += 1
-
-        if images[3]:
-            results_stats_dic['n_dogs_img'] += 1
-        if not images[3]:
-            results_stats_dic['n_notdogs_img'] += 1
-
-        if images[3] and images[4]:
-            results_stats_dic['n_correct_dogs'] += 1
-        if not images[3] and not images[4]:
-            results_stats_dic['n_correct_notdogs'] += 1
-
-        if images[2] and images[3]:
-            results_stats_dic['n_correct_breed'] += 1
-
-
-    #Percentage of Correctly Classified Dog Images
-    try:
-        results_stats_dic['pct_correct_dogs'] = results_stats_dic['n_correct_dogs'] / results_stats_dic['n_dogs_img'] * 100
-    except ZeroDivisionError:
-        results_stats_dic['pct_correct_breed'] = 0
-    #Percentage of Correctly Classified Non-Dog Images
-    try:
-        results_stats_dic['pct_correct_notdogs'] = results_stats_dic['n_correct_notdogs'] / results_stats_dic['n_notdogs_img'] * 100
-    except ZeroDivisionError:
-        results_stats_dic['pct_correct_notdogs'] = 0
-    #Percentage of Correctly Classified Dog Breeds
-    try:
-        results_stats_dic['pct_correct_breed'] = results_stats_dic['n_correct_breed'] / results_stats_dic['n_dogs_img'] * 100
-    except ZeroDivisionError:
-        results_stats_dic['pct_correct_breed'] = 0    
-    #Percentage Label Matches ( regardless if they're a dog)
-    try:
-        results_stats_dic['pct_correct_label'] = results_stats_dic['n_correct_label'] / results_stats_dic['n_images'] * 100
-    except ZeroDivisionError:
-        results_stats_dic['pct_correct_label'] = 0
-
-    return results_stats_dic
-    
+#     return results_stats_dic

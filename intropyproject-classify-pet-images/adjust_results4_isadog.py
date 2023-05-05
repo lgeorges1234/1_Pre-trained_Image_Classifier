@@ -66,5 +66,44 @@ def adjust_results4_isadog(results_dic, dogfile):
                maltese) (string - indicates text file's filename)
     Returns:
            None - results_dic is mutable data type so no return needed.
-    """           
-    None
+    """      
+    dogfile_list = []
+    with open(dogfile) as f:
+        for line in f:
+            dogfile_list.append(line.rstrip())
+    # print(dogfile_list)
+
+    for key, label in results_dic.items():
+        
+        # if results_dic[key][0] in dogfile_list:
+        #     if results_dic[key][1] in dogfile_list:
+        #         results_dic[key].extend((1, 1))
+        #     else: 
+        #         results_dic[key].extend((1, 0))
+        # else:
+        #     if results_dic[key][1] in dogfile_list:
+        #         results_dic[key].extend((0, 1))
+        #     else:
+        #         results_dic[key].extend((0, 0))
+        LabelIsADog = 0
+        ClassifierIsADog = 0
+        if label[0] in dogfile_list:
+            LabelIsADog = 1
+        if set(label[1].split(','))&set(dogfile_list):
+            ClassifierIsADog = 1        
+        results_dic[key].extend([LabelIsADog, ClassifierIsADog])
+    
+    # for key in results_dic:
+    #   print("\nFilename=", key, "\npet_image Label=", results_dic[key][0],
+    #         "\nClassifier Label=", results_dic[key][1], "\nmatch=",
+    #         results_dic[key][2], "\nImage is dog=", results_dic[key][3],
+    #         "\nClassifier is dog=", results_dic[key][4])                        
+
+    # Provides classifications of the results
+    # if sum(results_dic[key][2:]) == 3:
+    #     print("*Breed Match*")
+    # if sum(results_dic[key][3:]) == 2:
+    #     print("*Is-a-Dog Match*")
+    # if sum(results_dic[key][3:]) == 0 and results_dic[key][2] == 1:
+    #     print("*NOT-a-Dog Match*")
+

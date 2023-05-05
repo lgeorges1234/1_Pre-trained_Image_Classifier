@@ -62,26 +62,5 @@ def print_results(results_dic, results_stats_dic, model,
     Returns:
            None - simply printing results.
     """    
-
-    print("\nResult of the CNN architecture classification using " + model.upper() + " model \n")
-    print("Number of Images :\t\t\t{}".format(results_stats_dic['n_images']))
-    print("Number of Dog Images :\t\t\t{}".format(results_stats_dic['n_dogs_img']))
-    print("Number of 'Not-a' Dog Images :\t{}\n".format(results_stats_dic['n_notdogs_img']))
-    
+    None
                 
-    for key in results_stats_dic:
-        if 'pct' in key:
-            print(str(key) + " :\t\t\t"+ str(round(results_stats_dic[key],2)))
-
-    
-    if print_incorrect_dogs and (results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs'] != results_stats_dic['n_images']):
-        print("\nDog misclassifications : \n")
-        for key, image in results_dic.items():
-            if sum(image[3:]):
-                print("Real: {:>30} \t\tClassifier labels: {:>30}".format(image[0], image[1]))
-
-    if print_incorrect_breed and (results_stats_dic['n_correct_dogs'] != results_stats_dic['n_correct_breed']):
-        print("\nBreed misclassifications : \n")
-        for key, image in results_dic.items():
-            if sum(image[3:]) == 2 and not image[2]:
-                print("Real: {:>30} \t\tClassifier labels: {:>30}".format(image[0], image[1]))

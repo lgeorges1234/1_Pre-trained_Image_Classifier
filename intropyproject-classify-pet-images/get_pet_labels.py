@@ -23,7 +23,7 @@ from os import listdir
 #       in the return statement with results_dic dictionary that you create 
 #       with this function
 # 
-def get_pet_labels(image_dir):
+def get_pet_labels(image_dir = "pets_images/"):
     """
     Creates a dictionary of pet labels (results_dic) based upon the filenames 
     of the image files. These pet image labels are used to check the accuracy 
@@ -42,4 +42,17 @@ def get_pet_labels(image_dir):
     """
     # Replace None with the results_dic dictionary that you created with this
     # function
-    return None
+    filename_list = listdir(image_dir)
+    print("\nPrints 10 filenames from folder pet_images/")
+
+    # for idx in range(0, 10, 1):
+    #     print("{:2d} file: {:>25}".format(idx + 1, filename_list[idx]) )
+
+    results_dic = {}
+
+    for idx in filename_list:
+        end = idx.rfind('_')
+        pet_label = idx[:end].lower().replace('_', ' ').strip()
+        if idx not in results_dic:
+            results_dic[idx] = [pet_label]
+    return results_dic
